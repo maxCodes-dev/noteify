@@ -1,0 +1,62 @@
+.new-button {
+  display: inline-block;
+}
+
+.new {
+  color: white;
+  background-color: green;
+  border-radius: 16px 0 0 16px;
+  height: 42px;
+  padding: 2px 6px;
+  vertical-align: middle;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.8rem;
+  width: 54px;
+  border-right: solid 2px rgba(255, 255, 255);
+}
+
+select, ::picker(select) {
+  appearance: base-select;
+}
+
+::picker(select) {
+  border: none;
+  border-radius: 0 0 16px 16px;
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+select::picker-icon {
+  margin: auto 0 auto -8px;
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
+}
+
+.options {
+  color: white;
+  background-color: green;
+  border-radius: 0 16px 16px 0;
+  height: 42px;
+  /* padding: 2px 6px; */
+  vertical-align: middle;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
+  border-style: solid;
+  border-left: solid 2px rgba(255, 255, 255);
+  /* width: 132px; */
+  width: 36px;
+}
+
+.selectedcontent {
+  vertical-align: middle;
+  font-size: 1.0rem;
+  font-weight: bold;
+}
+
+option {
+  font-weight: normal;
+  font-size: 1rem;
+}

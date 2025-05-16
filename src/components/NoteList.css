@@ -1,0 +1,6 @@
+.note-list {
+  overflow: scroll;
+  scroll-snap-type: proximity;
+  width: fit-content;
+  height: auto;
+}

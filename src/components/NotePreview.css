@@ -1,0 +1,42 @@
+.note-preview {
+  display: block;
+  padding: 1em;
+  background-color: #343434;
+  color: rgba(255, 255, 255, 0.87);
+  width: 480px;
+  text-align: left;
+  border-radius: 16px;
+  height: 9rem;
+  /* overflow: hidden; */
+  margin: 1em;cx
+  text-wrap: pretty;
+}
+
+.note-preview h3,
+.note-preview p {
+  margin: 0.7em 0.5em;
+}
+
+p {
+  white-space: pre;
+}
+
+.header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.right-icon {
+  margin-left: auto;
+  border: none;
+  background-color: #00000000;
+  padding: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .note-preview {
+    color: #213547;
+    background-color: #f7f7f7;
+  }
+}
