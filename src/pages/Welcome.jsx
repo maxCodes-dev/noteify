@@ -4,7 +4,7 @@ import reactLogo from '../assets/react.svg';
 import viteLogo from '/vite.svg';
 import { loadNoteData } from '@src/handleData';
 
-// import '../App.css';
+import './Welcome.css';
 
 
 export default function Welcome({ onFinish }) {
