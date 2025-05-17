@@ -1,6 +1,11 @@
 .note-list {
-  overflow: scroll;
+  /* overflow-x: visible; */
+  overflow-y: scroll;
   scroll-snap-type: proximity;
-  width: fit-content;
+  /* width: calc-size(max-content, size * 1000px); */
+  width: 680px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

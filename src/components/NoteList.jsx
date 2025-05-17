@@ -8,7 +8,7 @@ import './NoteList.css';
  */
 export default function NoteList({ noteDataList, onDelete }) {
   const notes = noteDataList.map((value, index) => {
-    return <NotePreview noteData={value} onDelete={onDelete} />;
+    return <NotePreview noteData={value} onDelete={onDelete} key={noteDataList[index].timestamp} noteKey={noteDataList[index].timestamp} />;
   });
 
   return <div className="note-list">{notes}</div>;

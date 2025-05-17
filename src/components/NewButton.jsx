@@ -9,7 +9,7 @@ export default function NewButton({ onCreate }) {
   const [selectedValue, setSelectedValue] = useState('');
 
   function handleChange(event) {
-    setSelectedValue(event.target.value)
+    setSelectedValue(event.target.value);
   }
 
   return (

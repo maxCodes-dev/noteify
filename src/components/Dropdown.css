@@ -6,6 +6,8 @@
   /* font-size: 16px; */
   border: none;
   cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 }
 
 /* Dropdown button on hover & focus */

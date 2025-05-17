@@ -2,12 +2,12 @@ import Dropdown from './Dropdown';
 
 import './NotePreview.css';
 
-export default function NotePreview({ noteData, onDelete, key }) {
+export default function NotePreview({ noteData, onDelete, noteKey }) {
   const optionsChoices = ['Delete Note'];
-  const optionsOnClicks = [() => onDelete(key)];
+  const optionsOnClicks = [() => onDelete(noteKey)];
 
   return (
-    <div className='note-preview'>
+    <div className='note-preview' key={noteKey}>
       <div className='header-row'>
         <h3>{noteData.title}</h3>
         <div className='right-icon'>
