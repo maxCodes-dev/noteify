@@ -1,0 +1,28 @@
+.header-row {
+    display: flex;
+    flex-direction: row;
+    margin: 16px;
+}
+
+#note-name {
+    flex: auto;
+    text-align: center;
+}
+
+#save-button {
+    /* float: right; */
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px 14px;
+}
+
+/* @media (prefers-color-scheme: dark) {
+    .p-editor-toolbar {
+        color: whitesmoke;
+    }
+    .p-editor-toolbar select {
+        background-color: #333;
+    }
+} */

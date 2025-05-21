@@ -8,17 +8,20 @@ import NewButton from '@components/NewButton.jsx';
 
 import Home from './pages/Home';
 import Welcome from './pages/Welcome';
+import NoteEditor from './pages/NoteEditor';
 
 import './App.css';
 
 export default function App() {
   const [notesLoaded, setNotesLoaded] = useState(false);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index path='/' element={notesLoaded ? <Home /> : <Navigate to='/welcome' />} />
-          <Route path='/welcome' element={<Welcome onFinish={() => setNotesLoaded(true)}/>} />
+          <Route index path='/' element={<Home notesLoaded={notesLoaded} />} />
+          <Route path='/welcome' element={<Welcome onFinish={() => setNotesLoaded(true)} />} />
+          <Route path='/editnote' element={<NoteEditor />} />
         </Routes>
       </BrowserRouter>
     </>

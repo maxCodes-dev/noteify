@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Dropdown } from 'primereact/dropdown';
 
 import './NewButton.css';
 
 export default function NewButton({ onCreate }) {
-  const noteTypes = ["plaintext", "markdown (not implemented)"]
-  const [noteType, setNoteType] = useState("plaintext");
+  const noteTypes = ["richtext", "plaintext (not implemented)"]
+  const [noteType, setNoteType] = useState("richtext");
   const [selectedValue, setSelectedValue] = useState('');
 
   function handleChange(event) {
@@ -24,8 +23,8 @@ export default function NewButton({ onCreate }) {
             {selectedValue === 'markdown' && <span>Markdown</span>} */}
           </div>
         </button>
-        <option value='plaintext'>Plaintext</option>
-        <option value='markdown' disabled>Markdown (currently not implemeted)</option>
+        <option value='plaintext'>Rich Text</option>
+        <option value='markdown' disabled>Plain text (currently not implelemented)</option>
       </select>
     </div>
   );

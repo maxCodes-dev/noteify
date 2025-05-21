@@ -6,7 +6,7 @@
   width: 480px;
   text-align: left;
   border-radius: 16px;
-  height: 9rem;
+  height: 11rem;
   /* overflow: hidden; */
   margin: 1em;
   text-wrap: pretty;
@@ -14,7 +14,7 @@
 
 .note-preview h3,
 .note-preview p {
-  margin: 0.7em 0.5em;
+  margin: 0.4em 0.5em;
 }
 
 p {
@@ -25,6 +25,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0;
 }
 
 .right-icon {
@@ -32,6 +33,10 @@ p {
   border: none;
   background-color: #00000000;
   padding: 0;
+}
+
+.note-preview button {
+  background-color: inherit;
 }
 
 @media (prefers-color-scheme: light) {
