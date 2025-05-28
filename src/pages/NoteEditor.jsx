@@ -55,7 +55,7 @@ export default function NoteEditor({ notesFileHandle }) {
     <>
       <h1>Noteify</h1>
       <div className='header-row'>
-        <h2 ref={titleRef} id='note-name' contentEditable={true} onChange={e => {setTitle(e.currentTarget.innerText); alert(e.currentTarget.innerText)}}>{title}</h2>
+        <h2 ref={titleRef} id='note-name' contentEditable={true}>{title}</h2>
         <button ref={submitRef} id='save-button' onClick={saveNote}>Save Note</button>
       </div>
       <Editor value={text} onTextChange={e => setText(e.htmlValue)} style={{height: '360px'}}/>
