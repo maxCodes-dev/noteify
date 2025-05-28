@@ -1,4 +1,5 @@
-import Dropdown from './Dropdown';
+import parse from 'html-react-parser';
+import Dropdown from './Dropdown.jsx';
 
 import './NotePreview.css';
 
@@ -19,7 +20,7 @@ export default function NotePreview({ noteData, onDelete, noteKey }) {
         </div>
       </div>
       <hr />
-      <p>{noteData.body}</p>
+      <p>{parse(noteData.body)}</p>
     </div>
   );
 }

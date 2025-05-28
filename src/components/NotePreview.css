@@ -6,19 +6,24 @@
   width: 480px;
   text-align: left;
   border-radius: 16px;
-  height: 11rem;
+  height: 11rem !important;
   /* overflow: hidden; */
   margin: 1em;
   text-wrap: pretty;
 }
 
-.note-preview h3,
-.note-preview p {
+.note-preview > hr {
+  color: #444444;
+  border-width: 3px;
+}
+
+.note-preview > div > h3,
+.note-preview > p {
   margin: 0.4em 0.5em;
 }
 
-p {
-  white-space: pre;
+.note-preview > p {
+  padding: 0.5em;
 }
 
 .header-row {
@@ -43,5 +48,8 @@ p {
   .note-preview {
     color: #213547;
     background-color: #f7f7f7;
+  }
+  .note-preview > hr {
+    color: #e7e7e7;
   }
 }

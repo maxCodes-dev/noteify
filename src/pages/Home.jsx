@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Navigate } from 'react-router';
+
+/** @import { NoteData } from '../typedefs.js' */
 
 import NoteList from '@components/NoteList.jsx';
 import NewButton from '@components/NewButton.jsx';
@@ -8,43 +10,66 @@ import { saveNoteData } from '@src/handleData';
 
 import './Home.css';
 
-
-export default function Home({ notesLoaded }) {
-  if (!notesLoaded) {
+/**
+ * Home page.
+ * @param {Object} props - Properties of the component.
+ * @param {FileSystemFileHandle} props.notesFileHandle - File handle for reading note data.
+ * @returns 
+ */
+export default function Home({ notesFileHandle }) {
+  if (notesFileHandle === null) {
+    // alert("no file handle");
     return <Navigate to='/welcome' />;
   }
+  // alert("in home");
+  /**@type {NoteData[]} */
   const defaultData = [];
   const [noteData, setNoteData] = useState(defaultData);
-  /**@type {FileSystemFileHandle} */
-  const notesFileHandle = useLocation().state["notesFileHandle"];
+  // alert(noteData.toString());
+  const location = useLocation();
   const navigate = useNavigate();
 
-  if (noteData === defaultData) {
-    notesFileHandle.getFile()
-        .then(file => file.text())
-        .then(data => setNoteData(JSON.parse(data)));
+  /**
+   * Fetches the note data.
+   * @returns {Promise<NoteData[]>} - The note data.
+   */
+  async function fetchNoteData() {
+    const file = await notesFileHandle.getFile();
+    const data = await file.text();
+    return JSON.parse(data);
   }
 
-  function createNote() { try {
-    /** @type {Array} */
+  async function loadNoteData() {
+    const noteData = await fetchNoteData();
+    setNoteData(noteData);
+  }
+
+  useEffect(() => {
+   loadNoteData();
+  }, []);
+
+  async function createNote() { try {
+    /** @type {NoteData[]} */
     const newNoteData = noteData.slice();
-    newNoteData.push({"title": "Untitled", "body": "", "timestamp": (new Date(Date.now())).toISOString()});
+    const timestamp = (new Date(Date.now())).toISOString();
+    newNoteData.push({"title": "Untitled", "body": "", "timestamp": timestamp});
     setNoteData(newNoteData);
-    saveNoteData(notesFileHandle, newNoteData);
-    navigate('/editnote', { state: { noteData: noteData, noteIndex: noteData.length - 1 } });
+    await saveNoteData(notesFileHandle, newNoteData);
+    navigate('/editnote', { state: { noteData: newNoteData, timestamp: timestamp, handle: notesFileHandle } });
   } catch (e) {
     alert(e);
   }
   }
 
   function deleteNote(noteKey) {
+    /** @type {NoteData[]} */
     const newNoteData = noteData.slice();
     const toDelete = newNoteData.indexOf(newNoteData.find(note => note.timestamp === noteKey));
     newNoteData.splice(toDelete, 1);
     setNoteData(newNoteData);
     saveNoteData(notesFileHandle, newNoteData);
-  } 
-
+  }
+  
   return (
     <>
       <h1>Noteify</h1>

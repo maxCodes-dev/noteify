@@ -8,10 +8,16 @@ import './Welcome.css';
 
 
 export default function Welcome({ onFinish }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  
+  
+  /**
+   * Loads note data.
+   * @param {Boolean} doCreate - Whether to create or read a file.
+   */
   async function loadNotes(doCreate) {
     const notesFileHandle = await loadNoteData(doCreate);
-    onFinish();
+    onFinish(notesFileHandle);
     navigate('/', {state: {"notesFileHandle": notesFileHandle}});
   }
 

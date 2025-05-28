@@ -36,9 +36,10 @@ export async function loadNoteData(doCreate) {
  * @param {FileSystemFileHandle} notesFileHandle - The file handle to write to.
  * @param {Object} noteData - The data to write to the handle.
  */
-export async function saveNoteData(notesFileHandle, noteData) {
+export async function saveNoteData(notesFileHandle, noteData, handleStateUpdate=null) {
   /**@type {FileSystemWritableFileStream} */
   const notesWriteable = await notesFileHandle.createWritable();
   await notesWriteable.write(JSON.stringify(noteData));
   await notesWriteable.close();
+  if (handleStateUpdate) handleStateUpdate();
 }
