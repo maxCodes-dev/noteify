@@ -18,11 +18,11 @@
 }
 
 .note-preview > div > h3,
-.note-preview > p {
+.note-preview > .note-body {
   margin: 0.4em 0.5em;
 }
 
-.note-preview > p {
+.note-preview > .note-body {
   padding: 0.5em;
 }
 

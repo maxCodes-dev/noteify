@@ -20,7 +20,7 @@ export default function NotePreview({ noteData, onDelete, noteKey }) {
         </div>
       </div>
       <hr />
-      <p>{parse(noteData.body)}</p>
+      <div className='note-body'>{parse(noteData.body)}</div>
     </div>
   );
 }
