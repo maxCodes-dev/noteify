@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
     "html-react-parser": "^5.2.5",
+    "json-server": "^1.0.0-beta.3",
     "primereact": "^10.9.5",
     "quill": "^2.0.3",
     "react": "^19.1.0",

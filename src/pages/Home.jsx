@@ -6,7 +6,7 @@ import { useLocation, useNavigate, Navigate } from 'react-router';
 import NoteList from '@components/NoteList.jsx';
 import NewButton from '@components/NewButton.jsx';
 
-import { saveNoteData } from '@src/handleData';
+import { saveNoteFile } from '@src/handleData';
 
 import './Home.css';
 
@@ -39,13 +39,13 @@ export default function Home({ notesFileHandle }) {
     return JSON.parse(data);
   }
 
-  async function loadNoteData() {
+  async function loadNoteFile() {
     const noteData = await fetchNoteData();
     setNoteData(noteData);
   }
 
   useEffect(() => {
-   loadNoteData();
+   loadNoteFile();
   }, []);
 
   async function createNote() { try {
@@ -54,7 +54,7 @@ export default function Home({ notesFileHandle }) {
     const timestamp = (new Date(Date.now())).toISOString();
     newNoteData.push({"title": "Untitled", "body": "", "timestamp": timestamp});
     setNoteData(newNoteData);
-    await saveNoteData(notesFileHandle, newNoteData);
+    await saveNoteFile(notesFileHandle, newNoteData);
     navigate('/editnote', { state: { noteData: newNoteData, timestamp: timestamp, handle: notesFileHandle } });
   } catch (e) {
     alert(e);
@@ -67,7 +67,7 @@ export default function Home({ notesFileHandle }) {
     const toDelete = newNoteData.indexOf(newNoteData.find(note => note.timestamp === noteKey));
     newNoteData.splice(toDelete, 1);
     setNoteData(newNoteData);
-    saveNoteData(notesFileHandle, newNoteData);
+    saveNoteFile(notesFileHandle, newNoteData);
   }
   
   return (

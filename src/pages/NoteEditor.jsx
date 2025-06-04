@@ -5,7 +5,7 @@ import { useNavigate, useLocation, Navigate } from 'react-router';
 
 import { Editor } from 'primereact/editor';
 
-import { saveNoteData } from '@src/handleData';
+import { saveNoteFile } from '@src/handleData';
 
 import './NoteEditor.css';
 
@@ -47,7 +47,7 @@ export default function NoteEditor({ notesFileHandle }) {
     }
     alert(JSON.stringify(data));
     newNotesData[noteDataIndex] = data;
-    await saveNoteData(notesFileHandle, newNotesData);
+    await saveNoteFile(notesFileHandle, newNotesData);
     navigate('/');
   }
 
@@ -55,7 +55,7 @@ export default function NoteEditor({ notesFileHandle }) {
     <>
       <h1>Noteify</h1>
       <div className='header-row'>
-        <h2 ref={titleRef} id='note-name' contentEditable suppressContentEditableWarning>{title}</h2>
+        <h2 ref={titleRef} id='note-name' contentEditable={true}>{title}</h2>
         <button ref={submitRef} id='save-button' onClick={saveNote}>Save Note</button>
       </div>
       <Editor value={text} onTextChange={e => setText(e.htmlValue)} style={{height: '360px'}}/>

@@ -27,7 +27,7 @@ export default function Dropdown({ choices, onClicks, children, className }) {
      * @param {PointerEvent} event 
      */
     window.onclick = event => {
-      if (dropbtnRef.current !== null && !dropbtnRef.current.contains(event.target)) {
+      if (!dropbtnRef.current.contains(event.target)) {
         const dropdowns = document.getElementsByClassName("dropdown-content");
         let i;
         for (i = 0; i < dropdowns.length; i++) {
