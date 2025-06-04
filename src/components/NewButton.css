@@ -16,7 +16,8 @@
   border-right: solid 2px rgba(255, 255, 255);
 }
 
-select, ::picker(select) {
+select,
+::picker(select) {
   appearance: base-select;
 }
 
@@ -52,7 +53,7 @@ select:open::picker-icon {
 
 .selectedcontent {
   vertical-align: middle;
-  font-size: 1.0rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 

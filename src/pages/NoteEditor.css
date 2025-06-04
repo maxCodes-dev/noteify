@@ -1,23 +1,23 @@
 @import url(https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css);
 
 .header-row {
-    display: flex;
-    flex-direction: row;
-    margin: 16px;
+  display: flex;
+  flex-direction: row;
+  margin: 16px;
 }
 
 #note-name {
-    flex: auto;
-    text-align: center;
+  flex: auto;
+  text-align: center;
 }
 
 #save-button {
-    /* float: right; */
-    background-color: green;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px 14px;
+  /* float: right; */
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px 14px;
 }
 
 /* @media (prefers-color-scheme: dark) {

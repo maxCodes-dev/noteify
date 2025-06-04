@@ -1,26 +1,31 @@
-import { useState, useRef, useLayoutEffect } from 'react';
-import { useNavigate, useLocation, Navigate } from 'react-router';
+import { useState, useRef, useLayoutEffect } from "react";
+import { preinit } from "react-dom";
+import { useNavigate, useLocation, Navigate } from "react-router";
 
 /** @import { NoteData } from '../typedefs.js' */
 
-import { Editor } from 'primereact/editor';
+import { Editor } from "primereact/editor";
 
-import { saveNoteFile } from '@src/handleData';
+import { saveNoteFile } from "@src/handleData";
 
-import './NoteEditor.css';
-
+import "./NoteEditor.css";
 
 export default function NoteEditor({ notesFileHandle }) {
+  preinit("https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css", {
+    as: "style",
+  });
   const location = useLocation();
   if (location.state.noteData == null) {
-    return <Navigate to='/welcome' />;
+    return <Navigate to="/welcome" />;
   } else {
     // alert(location.state.noteData);
   }
   const navigate = useNavigate();
   /** @type {NoteData[]} */
   const notesData = location.state.noteData;
-  const noteDataIndex = notesData.findIndex(note => note.timestamp = location.state.timestamp);
+  const noteDataIndex = notesData.findIndex(
+    (note) => (note.timestamp = location.state.timestamp),
+  );
   const noteData = notesData[noteDataIndex];
   /** @type {[string, React.Dispatch<string>]} */
   const [title, setTitle] = useState(noteData.title);
@@ -31,7 +36,7 @@ export default function NoteEditor({ notesFileHandle }) {
 
   useLayoutEffect(() => {
     const rightWidth = submitRef.current.offsetWidth;
-    titleRef.current.style.marginLeft = rightWidth + 'px';
+    titleRef.current.style.marginLeft = rightWidth + "px";
   }, []);
 
   async function saveNote() {
@@ -39,26 +44,34 @@ export default function NoteEditor({ notesFileHandle }) {
     const timestamp = new Date(Date.now()).toISOString();
     const data = {
       title: titleRef.current.innerText,
-      body: text !== '' ? text : '<p></p>',
+      body: text !== "" ? text : "<p></p>",
       timestamp: timestamp,
-    }
+    };
     for (const key in data) {
-      alert(key + ': ' + data[key]);
+      alert(key + ": " + data[key]);
     }
     alert(JSON.stringify(data));
     newNotesData[noteDataIndex] = data;
     await saveNoteFile(notesFileHandle, newNotesData);
-    navigate('/');
+    navigate("/");
   }
 
   return (
     <>
       <h1>Noteify</h1>
-      <div className='header-row'>
-        <h2 ref={titleRef} id='note-name' contentEditable={true}>{title}</h2>
-        <button ref={submitRef} id='save-button' onClick={saveNote}>Save Note</button>
+      <div className="header-row">
+        <h2 ref={titleRef} id="note-name" contentEditable={true}>
+          {title}
+        </h2>
+        <button ref={submitRef} id="save-button" onClick={saveNote}>
+          Save Note
+        </button>
       </div>
-      <Editor value={text} onTextChange={e => setText(e.htmlValue)} style={{height: '360px'}}/>
+      <Editor
+        value={text}
+        onTextChange={(e) => setText(e.htmlValue)}
+        style={{ height: "360px" }}
+      />
     </>
   );
 }

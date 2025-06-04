@@ -25,7 +25,7 @@ export async function loadNoteFile(doCreate) {
   } else {
     [notesFileHandle] = await window.showOpenFilePicker(pickerOpts);
   }
-  notesFileHandle.requestPermission({"mode": "readwrite"});
+  notesFileHandle.requestPermission({ mode: "readwrite" });
   if (doCreate) {
     await saveNoteFile(notesFileHandle, []);
   }
@@ -37,7 +37,11 @@ export async function loadNoteFile(doCreate) {
  * @param {FileSystemFileHandle} notesFileHandle - The file handle to write to.
  * @param {Object} noteData - The data to write to the handle.
  */
-export async function saveNoteFile(notesFileHandle, noteData, handleStateUpdate=null) {
+export async function saveNoteFile(
+  notesFileHandle,
+  noteData,
+  handleStateUpdate = null,
+) {
   /**@type {FileSystemWritableFileStream} */
   const notesWriteable = await notesFileHandle.createWritable();
   await notesWriteable.write(JSON.stringify(noteData));
@@ -47,11 +51,11 @@ export async function saveNoteFile(notesFileHandle, noteData, handleStateUpdate=
 
 /**
  * @param {string} username - username of the user whose data is to be fetched.
+ * @returns {Promise<UserData[]>}
  */
-export async function fetchNoteData(username) { try {
-  const noteData = await (await fetch(`/data/${username}/notes`)).json();
-  alert(JSON.stringify(noteData));
-} catch (e) {
-  alert(e);
-}
+export async function fetchUserData(username) {
+  const users = await fetch(`/data/users`);
+  const usersData = await users.json();
+  const userData = usersData[username];
+  return userData;
 }
